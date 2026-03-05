@@ -46,6 +46,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         .tab-btn {
             background: #3498db;
@@ -54,6 +55,7 @@
             padding: 10px 20px;
             cursor: pointer;
             transition: background 0.3s;
+            margin: 2px;
         }
         .tab-btn:hover, .tab-btn.active {
             background: #2980b9;
@@ -70,13 +72,21 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+        .external-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .external-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Welcome to Syntaxr</h1>
     </header>
-    <p>For a more detailed explanation of our privacy practices, please read our <a href="privacy-policy.html">full Privacy Policy</a>.</p>
+
     <div class="container">
         <img src="BRANDLOGO.png" alt="Syntaxr Logo" class="logo">
         
@@ -84,13 +94,13 @@
             <button class="tab-btn active" onclick="openTab(event, 'home')">Home</button>
             <button class="tab-btn" onclick="openTab(event, 'brand')">Brand Info</button>
             <button class="tab-btn" onclick="openTab(event, 'privacy')">Privacy Policy</button>
+            <button class="tab-btn" onclick="openTab(event, 'terms')">Terms of Use</button>
         </div>
 
         <div id="home" class="tab-content active">
             <h2>About Syntaxr</h2>
             <p>Syntaxr is a brand dedicated to providing engaging and delightful user experiences. We specialize in creating high-quality apps that meet the highest standards of performance and user satisfaction.</p>
             <p>Our commitment to excellence ensures that every app we develop is not just functional, but also intuitive and enjoyable to use.</p>
-            <!-- <a href="https://play.google.com/store/apps/details?id=com.sytaxr.cellzfinale" class="btn">Download Our Latest App</a> -->
         </div>
 
         <div id="brand" class="tab-content">
@@ -102,7 +112,6 @@
                 <li>Meeting and exceeding industry standards</li>
                 <li>Continuous innovation and improvement</li>
             </ul>
-            <p>Our team of dedicated professionals works tirelessly to bring you apps that not only meet your needs but also exceed your expectations.</p>
         </div>
 
         <div id="privacy" class="tab-content">
@@ -111,9 +120,18 @@
             <ul>
                 <li>We do not collect any personal information from our users.</li>
                 <li>Our services do not involve the use of user data.</li>
-                <li>We are committed to providing a safe and secure experience for all our users.</li>
             </ul>
-            <p>Your privacy is our priority, and we strive to maintain the highest standards of data protection in all our applications.</p>
+            <p>For more specific details regarding our app policies, please view our 
+               <a href="bodytimeline_privacy_policy.html" class="external-link">Full Privacy Policy Documentation</a>.
+            </p>
+        </div>
+
+        <div id="terms" class="tab-content">
+            <h2>Terms of Use</h2>
+            <p>By using our applications and services, you agree to our terms and conditions.</p>
+            <p>You can review the complete document here: 
+               <a href="bodytimeline_terms_of_use.html" class="external-link">Detailed Terms of Use</a>.
+            </p>
         </div>
 
         <div class="contact-info">
@@ -140,4 +158,3 @@
     </script>
 </body>
 </html>
-
