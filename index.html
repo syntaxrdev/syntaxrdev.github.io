@@ -1,160 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syntaxr - Engaging User Experiences</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 1rem;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-        }
-        .logo {
-            display: block;
-            margin: 20px auto;
-            max-width: 200px;
-        }
-        .btn {
-            display: inline-block;
-            background: #3498db;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #2980b9;
-        }
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .tab-btn {
-            background: #3498db;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin: 2px;
-        }
-        .tab-btn:hover, .tab-btn.active {
-            background: #2980b9;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .contact-info {
-            background: #ecf0f1;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .external-link {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .external-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntaxr - Engaging User Experiences</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+line-height:1.6;
+margin:0;
+padding:0;
+background:#f4f4f4;
+color:#333;
+}
+
+header{
+background:#2c3e50;
+color:#ecf0f1;
+text-align:center;
+padding:1.5rem;
+}
+
+header h1{
+margin:0;
+font-weight:normal;
+}
+
+.container{
+width:85%;
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.logo{
+display:block;
+margin:30px auto;
+max-width:200px;
+}
+
+.tabs{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.tab-btn{
+background:#3498db;
+border:none;
+color:white;
+padding:10px 18px;
+cursor:pointer;
+transition:background .3s;
+margin:3px;
+border-radius:4px;
+}
+
+.tab-btn:hover,
+.tab-btn.active{
+background:#2980b9;
+}
+
+.tab-content{
+display:none;
+background:white;
+padding:20px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.tab-content.active{
+display:block;
+}
+
+.contact-info{
+background:#ecf0f1;
+padding:20px;
+border-radius:6px;
+margin-top:30px;
+}
+
+.external-link{
+color:#3498db;
+text-decoration:none;
+font-weight:bold;
+}
+
+.external-link:hover{
+text-decoration:underline;
+}
+
+ul{
+padding-left:20px;
+}
+
+footer{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#777;
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Syntaxr</h1>
-    </header>
 
-    <div class="container">
-        <img src="BRANDLOGO.png" alt="Syntaxr Logo" class="logo">
-        
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'home')">Home</button>
-            <button class="tab-btn" onclick="openTab(event, 'brand')">Brand Info</button>
-            <button class="tab-btn" onclick="openTab(event, 'privacy')">Privacy Policy</button>
-            <button class="tab-btn" onclick="openTab(event, 'terms')">Terms of Use</button>
-        </div>
+<header>
+<h1>Welcome to Syntaxr</h1>
+<p>Crafting engaging digital experiences</p>
+</header>
 
-        <div id="home" class="tab-content active">
-            <h2>About Syntaxr</h2>
-            <p>Syntaxr is a brand dedicated to providing engaging and delightful user experiences. We specialize in creating high-quality apps that meet the highest standards of performance and user satisfaction.</p>
-            <p>Our commitment to excellence ensures that every app we develop is not just functional, but also intuitive and enjoyable to use.</p>
-        </div>
+<div class="container">
 
-        <div id="brand" class="tab-content">
-            <h2>Syntaxr Brand Information</h2>
-            <p>At Syntaxr, we believe in:</p>
-            <ul>
-                <li>Creating engaging and delightful user experiences</li>
-                <li>Ensuring high-quality performance in all our apps</li>
-                <li>Meeting and exceeding industry standards</li>
-                <li>Continuous innovation and improvement</li>
-            </ul>
-        </div>
+<img src="BRANDLOGO.png" alt="Syntaxr Logo" class="logo">
 
-        <div id="privacy" class="tab-content">
-            <h2>Privacy Policy</h2>
-            <p>At Syntaxr, we take your privacy seriously. Our policy is simple:</p>
-            <ul>
-                <li>We do not collect any personal information from our users.</li>
-                <li>Our services do not involve the use of user data.</li>
-            </ul>
-            <p>For more specific details regarding our app policies, please view our 
-               <a href="bodytimeline_privacy_policy.html" class="external-link">Full Privacy Policy Documentation</a>.
-            </p>
-        </div>
+<div class="tabs">
 
-        <div id="terms" class="tab-content">
-            <h2>Terms of Use</h2>
-            <p>By using our applications and services, you agree to our terms and conditions.</p>
-            <p>You can review the complete document here: 
-               <a href="bodytimeline_terms_of_use.html" class="external-link">Detailed Terms of Use</a>.
-            </p>
-        </div>
+<button class="tab-btn active" onclick="openTab(event,'home')">Home</button>
 
-        <div class="contact-info">
-            <h2>Contact Us</h2>
-            <p>Email: syntaxrdev@gmail.com</p>
-            <p>Phone: +92 3705255759</p>
-        </div>
-    </div>
+<button class="tab-btn" onclick="openTab(event,'brand')">Brand Info</button>
 
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
+<button class="tab-btn" onclick="openTab(event,'privacy')">Privacy Policy</button>
+
+<button class="tab-btn" onclick="openTab(event,'terms')">Terms of Use</button>
+
+</div>
+
+
+<!-- HOME -->
+
+<div id="home" class="tab-content active">
+
+<h2>About Syntaxr</h2>
+
+<p>
+Syntaxr is a brand dedicated to delivering engaging and thoughtful digital experiences.
+Our focus is on creating intuitive applications and games that combine performance,
+strategy, and polished user interfaces.
+</p>
+
+<p>
+Our flagship puzzle game <strong>Cellz</strong> challenges players to connect dots,
+form squares, and outmaneuver opponents through strategy and precision.
+Players can challenge intelligent AI or compete with friends locally on the same device.
+</p>
+
+<p>
+At Syntaxr we prioritize clean design, reliable performance, and enjoyable gameplay.
+</p>
+
+</div>
+
+
+<!-- BRAND -->
+
+<div id="brand" class="tab-content">
+
+<h2>Syntaxr Brand Information</h2>
+
+<p>At Syntaxr we believe in:</p>
+
+<ul>
+
+<li>Designing engaging and delightful user experiences</li>
+
+<li>Building high-quality applications and games</li>
+
+<li>Maintaining strong performance and stability standards</li>
+
+<li>Continuous innovation and refinement of our products</li>
+
+</ul>
+
+<p>
+Our products aim to balance thoughtful design with meaningful interaction,
+ensuring users enjoy every moment of their experience.
+</p>
+
+</div>
+
+
+<!-- PRIVACY -->
+
+<div id="privacy" class="tab-content">
+
+<h2>Privacy Policy</h2>
+
+<p>
+At Syntaxr we take privacy seriously.
+</p>
+
+<ul>
+
+<li>We do not collect personal user information.</li>
+
+<li>Our applications operate without user accounts or personal data collection.</li>
+
+<li>Basic gameplay progress may be stored locally on your device.</li>
+
+</ul>
+
+<p>
+For the complete privacy details regarding our game <strong>Cellz</strong>,
+please review the official privacy policy below:
+</p>
+
+<p>
+
+<a href="cellz_privacy_policy.html" class="external-link">
+View Cellz Privacy Policy
+</a>
+
+</p>
+
+</div>
+
+
+<!-- TERMS -->
+
+<div id="terms" class="tab-content">
+
+<h2>Terms of Use</h2>
+
+<p>
+By using Syntaxr applications and games, including <strong>Cellz</strong>,
+you agree to our usage terms and conditions.
+</p>
+
+<p>
+You can review the full document here:
+</p>
+
+<p>
+
+<a href="cellz_terms_of_use.html" class="external-link">
+View Cellz Terms of Use
+</a>
+
+</p>
+
+</div>
+
+
+<div class="contact-info">
+
+<h2>Contact Us</h2>
+
+<p>Email: syntaxrdev@gmail.com</p>
+
+<p>Phone: +92 3705255759</p>
+
+</div>
+
+<footer>
+
+<p>© 2026 Syntaxr. All rights reserved.</p>
+
+</footer>
+
+</div>
+
+
+<script>
+
+function openTab(evt, tabName){
+
+var i, tabcontent, tablinks;
+
+tabcontent = document.getElementsByClassName("tab-content");
+
+for(i=0;i<tabcontent.length;i++){
+
+tabcontent[i].style.display="none";
+
+}
+
+tablinks = document.getElementsByClassName("tab-btn");
+
+for(i=0;i<tablinks.length;i++){
+
+tablinks[i].className = tablinks[i].className.replace(" active","");
+
+}
+
+document.getElementById(tabName).style.display="block";
+
+evt.currentTarget.className += " active";
+
+}
+
+</script>
+
 </body>
 </html>
