@@ -121,15 +121,11 @@ color:#777;
 <div class="tabs">
 
 <button class="tab-btn active" onclick="openTab(event,'home')">Home</button>
-
 <button class="tab-btn" onclick="openTab(event,'brand')">Brand Info</button>
-
 <button class="tab-btn" onclick="openTab(event,'privacy')">Privacy Policy</button>
-
 <button class="tab-btn" onclick="openTab(event,'terms')">Terms of Use</button>
 
 </div>
-
 
 <!-- HOME -->
 
@@ -138,23 +134,18 @@ color:#777;
 <h2>About Syntaxr</h2>
 
 <p>
-Syntaxr is a brand dedicated to delivering engaging and thoughtful digital experiences.
-Our focus is on creating intuitive applications and games that combine performance,
-strategy, and polished user interfaces.
+Syntaxr builds high quality interactive applications and games focused on precision design and performance.
 </p>
 
 <p>
-Our flagship puzzle game <strong>Cellz</strong> challenges players to connect dots,
-form squares, and outmaneuver opponents through strategy and precision.
-Players can challenge intelligent AI or compete with friends locally on the same device.
+Our current title <strong>GyroMaze</strong> is a control based maze experience where players navigate dynamic environments using motion and touch controls.
 </p>
 
 <p>
-At Syntaxr we prioritize clean design, reliable performance, and enjoyable gameplay.
+We focus on clean visuals responsive systems and immersive gameplay.
 </p>
 
 </div>
-
 
 <!-- BRAND -->
 
@@ -162,27 +153,22 @@ At Syntaxr we prioritize clean design, reliable performance, and enjoyable gamep
 
 <h2>Syntaxr Brand Information</h2>
 
-<p>At Syntaxr we believe in:</p>
+<p>At Syntaxr we focus on:</p>
 
 <ul>
 
-<li>Designing engaging and delightful user experiences</li>
-
-<li>Building high-quality applications and games</li>
-
-<li>Maintaining strong performance and stability standards</li>
-
-<li>Continuous innovation and refinement of our products</li>
+<li>Designing intuitive user experiences</li>
+<li>Building high performance applications</li>
+<li>Maintaining stability and responsiveness</li>
+<li>Continuous product improvement</li>
 
 </ul>
 
 <p>
-Our products aim to balance thoughtful design with meaningful interaction,
-ensuring users enjoy every moment of their experience.
+Our goal is to deliver refined and engaging digital products.
 </p>
 
 </div>
-
 
 <!-- PRIVACY -->
 
@@ -191,34 +177,30 @@ ensuring users enjoy every moment of their experience.
 <h2>Privacy Policy</h2>
 
 <p>
-At Syntaxr we take privacy seriously.
+We do not collect personal user data.
 </p>
 
 <ul>
 
-<li>We do not collect personal user information.</li>
-
-<li>Our applications operate without user accounts or personal data collection.</li>
-
-<li>Basic gameplay progress may be stored locally on your device.</li>
+<li>No personal information is collected</li>
+<li>No tracking or analytics are used</li>
+<li>Game data is stored locally on device</li>
 
 </ul>
 
 <p>
-For the complete privacy details regarding our game <strong>Cellz</strong>,
-please review the official privacy policy below:
+For full details specific to GyroMaze including motion sensor usage review the official policy below:
 </p>
 
 <p>
 
-<a href="cellz_privacy_policy.html" class="external-link">
-View Cellz Privacy Policy
+<a href="gyro_privacy_policy.html" class="external-link">
+View GyroMaze Privacy Policy
 </a>
 
 </p>
 
 </div>
-
 
 <!-- TERMS -->
 
@@ -227,32 +209,29 @@ View Cellz Privacy Policy
 <h2>Terms of Use</h2>
 
 <p>
-By using Syntaxr applications and games, including <strong>Cellz</strong>,
-you agree to our usage terms and conditions.
+By using Syntaxr applications including GyroMaze you agree to the terms of use.
 </p>
 
 <p>
-You can review the full document here:
+Full terms can be reviewed here:
 </p>
 
 <p>
 
-<a href="cellz_terms_of_use.html" class="external-link">
-View Cellz Terms of Use
+<a href="gyro_terms_of_use.html" class="external-link">
+View GyroMaze Terms of Use
 </a>
 
 </p>
 
 </div>
 
-
 <div class="contact-info">
 
-<h2>Contact Us</h2>
+<h2>Contact</h2>
 
 <p>Email: syntaxrdev@gmail.com</p>
-
-<p>Phone: +92 3705255759</p>
+<p>Phone: +923705255759</p>
 
 </div>
 
@@ -264,7 +243,6 @@ View Cellz Terms of Use
 
 </div>
 
-
 <script>
 
 function openTab(evt, tabName){
@@ -274,21 +252,16 @@ var i, tabcontent, tablinks;
 tabcontent = document.getElementsByClassName("tab-content");
 
 for(i=0;i<tabcontent.length;i++){
-
 tabcontent[i].style.display="none";
-
 }
 
 tablinks = document.getElementsByClassName("tab-btn");
 
 for(i=0;i<tablinks.length;i++){
-
 tablinks[i].className = tablinks[i].className.replace(" active","");
-
 }
 
 document.getElementById(tabName).style.display="block";
-
 evt.currentTarget.className += " active";
 
 }
