@@ -3,9 +3,814 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bill Calculator</title>
+<title>Voice Cost & Revenue Estimator - Syntaxr</title>
+
+<style>
+    /* shadcn-inspired minimal dark palette */
+    :root {
+        --background: #09090b;
+        --card: #09090b;
+        --card-foreground: #fafafa;
+        --primary: #fafafa;
+        --primary-foreground: #18181b;
+        --secondary: #27272a;
+        --secondary-foreground: #fafafa;
+        --muted: #27272a;
+        --muted-foreground: #a1a1aa;
+        --border: #27272a;
+        --ring: #d4d4d8;
+        --radius: 0.5rem;
+        
+        --success: #10b981;
+        --success-bg: rgba(16, 185, 129, 0.06);
+        --success-border: rgba(16, 185, 129, 0.3);
+        --success-text: #34d399;
+
+        --danger: #ef4444;
+        --danger-bg: rgba(239, 68, 68, 0.06);
+        --danger-border: rgba(239, 68, 68, 0.3);
+        --danger-text: #f87171;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--card-foreground);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    /* Back Navigation Button */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted-foreground);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background-color: transparent;
+        align-self: flex-start;
+        transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+        background-color: var(--secondary);
+        color: var(--primary);
+    }
+
+    /* Header */
+    header {
+        margin-bottom: 8px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        margin-bottom: 6px;
+        color: var(--primary);
+    }
+
+    header p {
+        color: var(--muted-foreground);
+        font-size: 0.95rem;
+        max-width: 650px;
+    }
+
+    /* Grid Layout */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Card Panels */
+    .card {
+        background-color: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 12px;
+        color: var(--primary);
+    }
+
+    /* Input Controls */
+    .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .control-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .control-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--primary);
+    }
+
+    .control-inputs {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 4px 10px;
+        background-color: transparent;
+    }
+
+    .control-inputs:focus-within {
+        outline: none;
+        border-color: var(--ring);
+    }
+
+    .control-inputs input[type="number"] {
+        border: none;
+        background: transparent;
+        color: var(--primary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        width: 80px;
+        text-align: right;
+        outline: none;
+    }
+
+    .control-inputs input[type="number"]::-webkit-outer-spin-button,
+    .control-inputs input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .control-unit {
+        color: var(--muted-foreground);
+        font-size: 0.8125rem;
+        font-weight: 500;
+    }
+
+    /* Custom range input */
+    .range-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--secondary);
+        outline: none;
+        cursor: pointer;
+    }
+
+    .range-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .range-input::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+    }
+
+    .range-input::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .range-input::-moz-range-thumb:hover {
+        transform: scale(1.15);
+    }
+
+    /* Toggle Switch Option */
+    .toggle-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.01);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-top: 4px;
+    }
+
+    .toggle-info {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        max-width: 75%;
+    }
+
+    .toggle-title {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--primary);
+    }
+
+    .toggle-description {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+    }
+
+    /* Styled Toggle Switch */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider-toggle {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--secondary);
+        transition: .2s;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+    }
+
+    .slider-toggle:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 2px;
+        bottom: 2px;
+        background-color: var(--primary);
+        transition: .2s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider-toggle {
+        background-color: var(--primary);
+    }
+
+    input:checked + .slider-toggle:before {
+        transform: translateX(20px);
+        background-color: var(--background);
+    }
+
+    /* Revenue & Profit Display Layout */
+    .metrics-summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    @media (max-width: 480px) {
+        .metrics-summary-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .metric-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        background-color: rgba(255, 255, 255, 0.005);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .metric-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted-foreground);
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--primary);
+    }
+
+    .metric-profit-positive {
+        color: var(--success);
+    }
+    
+    .metric-profit-negative {
+        color: var(--danger);
+    }
+
+    .metric-meta {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+    }
+
+    /* Cost Table Projections */
+    .projections-table {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .projection-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.875rem;
+    }
+
+    .projection-row:last-child {
+        border-bottom: none;
+    }
+
+    .row-title {
+        color: var(--muted-foreground);
+    }
+
+    .row-number {
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    /* Alerts Banner */
+    .alert-banner {
+        background-color: var(--success-bg);
+        border: 1px solid var(--success-border);
+        border-radius: var(--radius);
+        padding: 12px 16px;
+        font-size: 0.8125rem;
+        color: var(--success-text);
+        line-height: 1.4;
+        display: none;
+    }
+
+    /* Expand Details */
+    details.assumptions-section {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    summary.assumptions-trigger {
+        padding: 12px 16px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--muted-foreground);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.005);
+        outline: none;
+        user-select: none;
+        list-style: none;
+    }
+
+    summary.assumptions-trigger::-webkit-details-marker {
+        display: none;
+    }
+
+    summary.assumptions-trigger::after {
+        content: '+';
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    details[open] summary.assumptions-trigger::after {
+        content: '−';
+    }
+
+    .assumptions-content {
+        padding: 12px 16px;
+        border-top: 1px solid var(--border);
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .assumption-line {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .assumption-val {
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    /* Footnote */
+    .footnote {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        color: var(--muted-foreground);
+        font-size: 0.8125rem;
+    }
+
+    footer a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>
 </head>
 <body>
-<p>Bill Calculator page placeholder. This page will be used to demonstrate the client’s bill.</p>
+
+<div class="container">
+    <!-- Navigation Back Link -->
+    <a href="index.html" class="back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+    </a>
+
+    <!-- Header -->
+    <header>
+        <h1>Voice Features Estimator</h1>
+        <p>A simple dashboard projecting billing costs, plan revenues, and estimated profitability of voice architectures.</p>
+    </header>
+
+    <!-- Content Grid -->
+    <div class="dashboard-grid">
+        
+        <!-- Input Panel -->
+        <div class="card">
+            <div class="card-title">Configuration</div>
+
+            <!-- Number of Paid Users -->
+            <div class="control-group">
+                <div class="control-header">
+                    <label class="control-label" for="users-range">Number of Paid Users</label>
+                    <div class="control-inputs">
+                        <input type="number" id="users-number" min="10" max="100000" step="50">
+                        <span class="control-unit">users</span>
+                    </div>
+                </div>
+                <input type="range" id="users-range" class="range-input" min="10" max="20000" step="50">
+            </div>
+
+            <!-- % of Active Daily Usage -->
+            <div class="control-group">
+                <div class="control-header">
+                    <label class="control-label" for="active-range">Daily Active Usage Rate</label>
+                    <div class="control-inputs">
+                        <input type="number" id="active-number" min="1" max="100" step="1">
+                        <span class="control-unit">%</span>
+                    </div>
+                </div>
+                <input type="range" id="active-range" class="range-input" min="1" max="100" step="1">
+            </div>
+
+            <!-- Daily Usage per active speaker -->
+            <div class="control-group">
+                <div class="control-header">
+                    <label class="control-label" for="usage-range">Daily Usage per Active User</label>
+                    <div class="control-inputs">
+                        <input type="number" id="usage-number" min="0.5" max="120" step="0.5">
+                        <span class="control-unit">min</span>
+                    </div>
+                </div>
+                <input type="range" id="usage-range" class="range-input" min="0.5" max="60" step="0.5">
+            </div>
+
+            <!-- Device TTS Toggle Switch -->
+            <div class="toggle-group">
+                <div class="toggle-info">
+                    <span class="toggle-title">Use device built-in TTS</span>
+                    <span class="toggle-description">Uses device browser/OS for speech synthesis to reduce server costs to $0.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="device-tts-toggle">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="card">
+            <div class="card-title">Financial & Cost Estimates</div>
+
+            <!-- Revenue Summary Grid -->
+            <div class="metrics-summary-grid">
+                <!-- Monthly Plan Projections -->
+                <div class="metric-card">
+                    <span class="metric-label">Monthly Plan ($9.99/mo)</span>
+                    <div class="metric-meta">Revenue: <strong id="revenue-monthly" style="color:var(--primary)">$0.00</strong></div>
+                    <div class="metric-value" id="profit-monthly">$0.00</div>
+                    <span class="metric-meta">Est. monthly profit</span>
+                </div>
+
+                <!-- Annual Plan Projections -->
+                <div class="metric-card">
+                    <span class="metric-label">Annual Plan ($49.99/yr)</span>
+                    <div class="metric-meta">Revenue: <strong id="revenue-annual" style="color:var(--primary)">$0.00</strong></div>
+                    <div class="metric-value" id="profit-annual">$0.00</div>
+                    <span class="metric-meta">Est. yearly profit</span>
+                </div>
+            </div>
+
+            <!-- Cost Estimates Table -->
+            <div class="projections-table">
+                <div class="projection-row">
+                    <span class="row-title">Estimated Daily Cost</span>
+                    <span class="row-number" id="cost-daily">$0.00</span>
+                </div>
+                <div class="projection-row">
+                    <span class="row-title">Estimated Monthly Cost</span>
+                    <span class="row-number" id="cost-monthly">$0.00</span>
+                </div>
+                <div class="projection-row">
+                    <span class="row-title">Estimated Yearly Cost</span>
+                    <span class="row-number" id="cost-yearly">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Exclude Alert Banner -->
+            <div class="alert-banner" id="tts-alert">
+                ✨ Cloud TTS excluded. Device built-in TTS has no server-side TTS cost.
+            </div>
+
+            <!-- Transparency assumptions -->
+            <details class="assumptions-section">
+                <summary class="assumptions-trigger">Calculation Details & Split</summary>
+                <div class="assumptions-content">
+                    <div class="assumption-line">
+                        <span>Active Daily Speaking Users</span>
+                        <span class="assumption-val" id="active-speakers-count">0 users</span>
+                    </div>
+                    <div class="assumption-line">
+                        <span>Whisper Listening Cost</span>
+                        <span class="assumption-val" id="whisper-breakdown-cost">$0.00/day</span>
+                    </div>
+                    <div class="assumption-line">
+                        <span>TTS Speech Output Cost</span>
+                        <span class="assumption-val" id="tts-breakdown-cost">$0.00/day</span>
+                    </div>
+                    <div class="assumption-line">
+                        <span>Whisper Rate Assumption</span>
+                        <span class="assumption-val">$0.006 / min</span>
+                    </div>
+                    <div class="assumption-line">
+                        <span>Cloud Speech Rate Assumption</span>
+                        <span class="assumption-val" id="cloud-tts-rate">$0.040 / min</span>
+                    </div>
+                </div>
+            </details>
+
+            <div class="footnote">
+                Estimated costs based on standard model pricing models.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <a href="index.html">Syntaxr</a>. Estimations engineered for architectural assessment purposes.</p>
+    </footer>
+</div>
+
+<script>
+    // Inputs elements
+    const usersRange = document.getElementById('users-range');
+    const usersNumber = document.getElementById('users-number');
+    const activeRange = document.getElementById('active-range');
+    const activeNumber = document.getElementById('active-number');
+    const usageRange = document.getElementById('usage-range');
+    const usageNumber = document.getElementById('usage-number');
+    const deviceTtsToggle = document.getElementById('device-tts-toggle');
+
+    // Outputs elements
+    const revenueMonthly = document.getElementById('revenue-monthly');
+    const profitMonthly = document.getElementById('profit-monthly');
+    const revenueAnnual = document.getElementById('revenue-annual');
+    const profitAnnual = document.getElementById('profit-annual');
+
+    const costDaily = document.getElementById('cost-daily');
+    const costMonthly = document.getElementById('cost-monthly');
+    const costYearly = document.getElementById('cost-yearly');
+
+    const activeSpeakersCount = document.getElementById('active-speakers-count');
+    const whisperBreakdownCost = document.getElementById('whisper-breakdown-cost');
+    const ttsBreakdownCost = document.getElementById('tts-breakdown-cost');
+    const ttsAlert = document.getElementById('tts-alert');
+    const cloudTtsRate = document.getElementById('cloud-tts-rate');
+
+    // Helper: Currency Format
+    function formatCurrency(val) {
+        const isNegative = val < 0;
+        const absVal = Math.abs(val);
+        const formatted = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(absVal);
+        return isNegative ? `-${formatted}` : formatted;
+    }
+
+    function formatNumber(val) {
+        return new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: 0
+        }).format(val) + " users";
+    }
+
+    // Double-way bindings sync
+    function bindInputs(rangeEl, numberEl, defaultValue) {
+        rangeEl.value = defaultValue;
+        numberEl.value = defaultValue;
+
+        rangeEl.addEventListener('input', (e) => {
+            numberEl.value = e.target.value;
+            calculate();
+        });
+
+        numberEl.addEventListener('input', (e) => {
+            let val = parseFloat(e.target.value);
+            if (isNaN(val)) return;
+            
+            const min = parseFloat(numberEl.min);
+            const max = parseFloat(numberEl.max);
+            if (val < min) val = min;
+            if (val > max) val = max;
+
+            rangeEl.value = val;
+            calculate();
+        });
+
+        numberEl.addEventListener('blur', () => {
+            let val = parseFloat(numberEl.value);
+            if (isNaN(val) || val < parseFloat(numberEl.min)) {
+                val = parseFloat(numberEl.min);
+            } else if (val > parseFloat(numberEl.max)) {
+                val = parseFloat(numberEl.max);
+            }
+            numberEl.value = val;
+            rangeEl.value = val;
+            calculate();
+        });
+    }
+
+    // Fast, lightweight calculation engine
+    function calculate() {
+        const paidUsers = parseInt(usersRange.value) || 0;
+        const activeUsagePct = parseFloat(activeRange.value) || 0;
+        const usageMinutes = parseFloat(usageRange.value) || 0;
+        const useDeviceTTS = deviceTtsToggle.checked;
+
+        // Revenue Logic
+        const monthlyRevenue = paidUsers * 9.99;
+        const annualRevenue = paidUsers * 49.99;
+
+        // Cost Logic
+        const activeSpeakingUsers = paidUsers * (activeUsagePct / 100);
+
+        // Daily usage split 50% / 50%
+        const listeningMinutesPerDay = activeSpeakingUsers * usageMinutes * 0.5;
+        const speakingMinutesPerDay = activeSpeakingUsers * usageMinutes * 0.5;
+
+        // Pricing logic
+        const whisperDailyCost = listeningMinutesPerDay * 0.006;
+        const ttsDailyCost = useDeviceTTS ? 0 : (speakingMinutesPerDay * 0.04);
+
+        const dailyCost = whisperDailyCost + ttsDailyCost;
+        const monthlyCost = dailyCost * 30;
+        const yearlyCost = dailyCost * 365;
+
+        // Profit logic
+        const monthlyProfit = monthlyRevenue - monthlyCost;
+        const yearlyProfit = annualRevenue - yearlyCost;
+
+        // Render values
+        revenueMonthly.textContent = formatCurrency(monthlyRevenue);
+        revenueAnnual.textContent = formatCurrency(annualRevenue);
+
+        // Render Profits with visual colors
+        profitMonthly.textContent = formatCurrency(monthlyProfit);
+        if (monthlyProfit >= 0) {
+            profitMonthly.className = "metric-value metric-profit-positive";
+        } else {
+            profitMonthly.className = "metric-value metric-profit-negative";
+        }
+
+        profitAnnual.textContent = formatCurrency(yearlyProfit);
+        if (yearlyProfit >= 0) {
+            profitAnnual.className = "metric-value metric-profit-positive";
+        } else {
+            profitAnnual.className = "metric-value metric-profit-negative";
+        }
+
+        // Render Costs table
+        costDaily.textContent = formatCurrency(dailyCost);
+        costMonthly.textContent = formatCurrency(monthlyCost);
+        costYearly.textContent = formatCurrency(yearlyCost);
+
+        // Active daily count
+        activeSpeakersCount.textContent = formatNumber(activeSpeakingUsers);
+
+        // Breakdown card values synced
+        whisperBreakdownCost.textContent = `${formatCurrency(whisperDailyCost)}/day`;
+        
+        if (useDeviceTTS) {
+            ttsBreakdownCost.textContent = "Device Free ($0)";
+            ttsBreakdownCost.style.color = "var(--success-text)";
+            ttsAlert.style.display = 'block';
+            cloudTtsRate.style.textDecoration = 'line-through';
+        } else {
+            ttsBreakdownCost.textContent = `${formatCurrency(ttsDailyCost)}/day`;
+            ttsBreakdownCost.style.color = "var(--primary)";
+            ttsAlert.style.display = 'none';
+            cloudTtsRate.style.textDecoration = 'none';
+        }
+    }
+
+    // Initialize controls
+    function init() {
+        bindInputs(usersRange, usersNumber, 1000);
+        bindInputs(activeRange, activeNumber, 10);
+        bindInputs(usageRange, usageNumber, 10);
+
+        deviceTtsToggle.addEventListener('change', calculate);
+
+        calculate();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>
