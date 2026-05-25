@@ -50,7 +50,7 @@
     }
 
     .container {
-        max-width: 1000px;
+        max-width: 1100px;
         width: 100%;
         margin: 0 auto;
         padding: 40px 20px;
@@ -98,17 +98,17 @@
     header p {
         color: var(--muted-foreground);
         font-size: 0.95rem;
-        max-width: 650px;
+        max-width: 700px;
     }
 
     /* Grid Layout */
     .dashboard-grid {
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
+        grid-template-columns: 1fr 1.3fr;
         gap: 24px;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
         .dashboard-grid {
             grid-template-columns: 1fr;
         }
@@ -233,7 +233,7 @@
         transform: scale(1.15);
     }
 
-    /* Toggle Switch Option */
+    /* Toggle Switch Option Container */
     .toggle-group {
         display: flex;
         justify-content: space-between;
@@ -242,7 +242,6 @@
         border: 1px solid var(--border);
         border-radius: var(--radius);
         padding: 16px;
-        margin-top: 4px;
     }
 
     .toggle-info {
@@ -261,6 +260,7 @@
     .toggle-description {
         font-size: 0.75rem;
         color: var(--muted-foreground);
+        line-height: 1.3;
     }
 
     /* Styled Toggle Switch */
@@ -269,6 +269,7 @@
         display: inline-block;
         width: 40px;
         height: 20px;
+        flex-shrink: 0;
     }
 
     .switch input {
@@ -311,14 +312,14 @@
         background-color: var(--background);
     }
 
-    /* Revenue & Profit Display Layout */
+    /* Financial projections Cards */
     .metrics-summary-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 20px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 580px) {
         .metrics-summary-grid {
             grid-template-columns: 1fr;
         }
@@ -327,73 +328,60 @@
     .metric-card {
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 16px;
+        padding: 20px;
         background-color: rgba(255, 255, 255, 0.005);
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 16px;
     }
 
-    .metric-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--muted-foreground);
+    .metric-card-header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 8px;
     }
 
-    .metric-value {
-        font-size: 1.5rem;
+    .metric-card-title {
+        font-size: 0.95rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
         color: var(--primary);
     }
 
-    .metric-profit-positive {
-        color: var(--success);
-    }
-    
-    .metric-profit-negative {
-        color: var(--danger);
-    }
-
-    .metric-meta {
+    .metric-card-subtitle {
         font-size: 0.75rem;
         color: var(--muted-foreground);
     }
 
-    /* Cost Table Projections */
-    .projections-table {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        overflow: hidden;
-    }
-
-    .projection-row {
+    .finance-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--border);
         font-size: 0.875rem;
     }
 
-    .projection-row:last-child {
-        border-bottom: none;
-    }
-
-    .row-title {
+    .finance-label {
         color: var(--muted-foreground);
     }
 
-    .row-number {
-        color: var(--primary);
+    .finance-value {
         font-weight: 600;
+        color: var(--primary);
     }
 
-    /* Alerts Banner */
+    .finance-profit-positive {
+        color: var(--success);
+    }
+    
+    .finance-profit-negative {
+        color: var(--danger);
+    }
+
+    .finance-profit-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    /* Exclude Alerts Banner */
     .alert-banner {
         background-color: var(--success-bg);
         border: 1px solid var(--success-border);
@@ -462,7 +450,6 @@
         color: var(--primary);
     }
 
-    /* Footnote */
     .footnote {
         font-size: 0.75rem;
         color: var(--muted-foreground);
@@ -502,7 +489,7 @@
     <!-- Header -->
     <header>
         <h1>Voice Features Estimator</h1>
-        <p>A simple dashboard projecting billing costs, plan revenues, and estimated profitability of voice architectures.</p>
+        <p>A lightweight SaaS dashboard projecting subscription revenues, infrastructure costs, and final estimated profitability margins.</p>
     </header>
 
     <!-- Content Grid -->
@@ -559,44 +546,70 @@
                     <span class="slider-toggle"></span>
                 </label>
             </div>
+
+            <!-- Ultra Speak Add-on Switch -->
+            <div class="toggle-group">
+                <div class="toggle-info">
+                    <span class="toggle-title">Enable Ultra Speak add-on</span>
+                    <span class="toggle-description">Adds +$9.99/mo per user for speaking options.</span>
+                    <span class="toggle-description" style="margin-top: 4px; font-style: italic; font-size: 0.6875rem;">
+                        “Ultra Speak helps compare whether charging extra for speaking features improves margins.”
+                    </span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="ultra-speak-toggle">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
         </div>
 
         <!-- Output Panel -->
         <div class="card">
             <div class="card-title">Financial & Cost Estimates</div>
 
-            <!-- Revenue Summary Grid -->
+            <!-- Projections Summaries -->
             <div class="metrics-summary-grid">
+                
                 <!-- Monthly Plan Projections -->
                 <div class="metric-card">
-                    <span class="metric-label">Monthly Plan ($9.99/mo)</span>
-                    <div class="metric-meta">Revenue: <strong id="revenue-monthly" style="color:var(--primary)">$0.00</strong></div>
-                    <div class="metric-value" id="profit-monthly">$0.00</div>
-                    <span class="metric-meta">Est. monthly profit</span>
+                    <div class="metric-card-header">
+                        <div class="metric-card-title">Monthly Subscription</div>
+                        <div class="metric-card-subtitle">Plan: $9.99/mo base</div>
+                    </div>
+                    
+                    <div class="finance-row">
+                        <span class="finance-label">Revenue</span>
+                        <span class="finance-value" id="monthly-revenue">$0.00</span>
+                    </div>
+                    <div class="finance-row">
+                        <span class="finance-label">Cost</span>
+                        <span class="finance-value" id="monthly-cost">$0.00</span>
+                    </div>
+                    <div class="finance-row" style="margin-top: 4px; border-top: 1px dashed var(--border); padding-top: 8px;">
+                        <span class="finance-label" style="font-weight: 500;">Est. Profit</span>
+                        <span class="finance-profit-value" id="monthly-profit">$0.00</span>
+                    </div>
                 </div>
 
                 <!-- Annual Plan Projections -->
                 <div class="metric-card">
-                    <span class="metric-label">Annual Plan ($49.99/yr)</span>
-                    <div class="metric-meta">Revenue: <strong id="revenue-annual" style="color:var(--primary)">$0.00</strong></div>
-                    <div class="metric-value" id="profit-annual">$0.00</div>
-                    <span class="metric-meta">Est. yearly profit</span>
-                </div>
-            </div>
-
-            <!-- Cost Estimates Table -->
-            <div class="projections-table">
-                <div class="projection-row">
-                    <span class="row-title">Estimated Daily Cost</span>
-                    <span class="row-number" id="cost-daily">$0.00</span>
-                </div>
-                <div class="projection-row">
-                    <span class="row-title">Estimated Monthly Cost</span>
-                    <span class="row-number" id="cost-monthly">$0.00</span>
-                </div>
-                <div class="projection-row">
-                    <span class="row-title">Estimated Yearly Cost</span>
-                    <span class="row-number" id="cost-yearly">$0.00</span>
+                    <div class="metric-card-header">
+                        <div class="metric-card-title">Annual Subscription</div>
+                        <div class="metric-card-subtitle">Plan: $49.99/yr base</div>
+                    </div>
+                    
+                    <div class="finance-row">
+                        <span class="finance-label">Revenue</span>
+                        <span class="finance-value" id="annual-revenue">$0.00</span>
+                    </div>
+                    <div class="finance-row">
+                        <span class="finance-label">Cost</span>
+                        <span class="finance-value" id="annual-cost">$0.00</span>
+                    </div>
+                    <div class="finance-row" style="margin-top: 4px; border-top: 1px dashed var(--border); padding-top: 8px;">
+                        <span class="finance-label" style="font-weight: 500;">Est. Profit</span>
+                        <span class="finance-profit-value" id="annual-profit">$0.00</span>
+                    </div>
                 </div>
             </div>
 
@@ -606,15 +619,23 @@
             </div>
 
             <!-- Transparency assumptions -->
-            <details class="assumptions-section">
-                <summary class="assumptions-trigger">Calculation Details & Split</summary>
+            <details class="assumptions-section" open>
+                <summary class="assumptions-trigger">Calculations & Split Breakdown</summary>
                 <div class="assumptions-content">
+                    <div class="assumption-line">
+                        <span>Base Subscription Revenue</span>
+                        <span class="assumption-val" id="breakdown-base-revenue">$0.00/mo</span>
+                    </div>
+                    <div class="assumption-line" id="breakdown-ultra-speak-row">
+                        <span>Ultra Speak Add-on Revenue</span>
+                        <span class="assumption-val" id="breakdown-ultra-revenue">$0.00/mo</span>
+                    </div>
                     <div class="assumption-line">
                         <span>Active Daily Speaking Users</span>
                         <span class="assumption-val" id="active-speakers-count">0 users</span>
                     </div>
                     <div class="assumption-line">
-                        <span>Whisper Listening Cost</span>
+                        <span>Whisper Transcription Cost</span>
                         <span class="assumption-val" id="whisper-breakdown-cost">$0.00/day</span>
                     </div>
                     <div class="assumption-line">
@@ -622,18 +643,14 @@
                         <span class="assumption-val" id="tts-breakdown-cost">$0.00/day</span>
                     </div>
                     <div class="assumption-line">
-                        <span>Whisper Rate Assumption</span>
-                        <span class="assumption-val">$0.006 / min</span>
-                    </div>
-                    <div class="assumption-line">
-                        <span>Cloud Speech Rate Assumption</span>
-                        <span class="assumption-val" id="cloud-tts-rate">$0.040 / min</span>
+                        <span>Total Cost Estimation</span>
+                        <span class="assumption-val" id="total-breakdown-cost">$0.00/day</span>
                     </div>
                 </div>
             </details>
 
             <div class="footnote">
-                Estimated costs based on standard model pricing models.
+                Estimated projections based on standard software pricing models.
             </div>
         </div>
 
@@ -654,22 +671,26 @@
     const usageRange = document.getElementById('usage-range');
     const usageNumber = document.getElementById('usage-number');
     const deviceTtsToggle = document.getElementById('device-tts-toggle');
+    const ultraSpeakToggle = document.getElementById('ultra-speak-toggle');
 
-    // Outputs elements
-    const revenueMonthly = document.getElementById('revenue-monthly');
-    const profitMonthly = document.getElementById('profit-monthly');
-    const revenueAnnual = document.getElementById('revenue-annual');
-    const profitAnnual = document.getElementById('profit-annual');
+    // Financial Outputs elements
+    const monthlyRevenue = document.getElementById('monthly-revenue');
+    const monthlyCost = document.getElementById('monthly-cost');
+    const monthlyProfit = document.getElementById('monthly-profit');
 
-    const costDaily = document.getElementById('cost-daily');
-    const costMonthly = document.getElementById('cost-monthly');
-    const costYearly = document.getElementById('cost-yearly');
+    const annualRevenue = document.getElementById('annual-revenue');
+    const annualCost = document.getElementById('annual-cost');
+    const annualProfit = document.getElementById('annual-profit');
 
+    // Breakdown Outputs elements
+    const breakdownBaseRevenue = document.getElementById('breakdown-base-revenue');
+    const breakdownUltraSpeakRow = document.getElementById('breakdown-ultra-speak-row');
+    const breakdownUltraRevenue = document.getElementById('breakdown-ultra-revenue');
     const activeSpeakersCount = document.getElementById('active-speakers-count');
     const whisperBreakdownCost = document.getElementById('whisper-breakdown-cost');
     const ttsBreakdownCost = document.getElementById('tts-breakdown-cost');
+    const totalBreakdownCost = document.getElementById('total-breakdown-cost');
     const ttsAlert = document.getElementById('tts-alert');
-    const cloudTtsRate = document.getElementById('cloud-tts-rate');
 
     // Helper: Currency Format
     function formatCurrency(val) {
@@ -726,16 +747,23 @@
         });
     }
 
-    // Fast, lightweight calculation engine
+    // Calculation engine
     function calculate() {
         const paidUsers = parseInt(usersRange.value) || 0;
         const activeUsagePct = parseFloat(activeRange.value) || 0;
         const usageMinutes = parseFloat(usageRange.value) || 0;
         const useDeviceTTS = deviceTtsToggle.checked;
+        const ultraSpeakEnabled = ultraSpeakToggle.checked;
 
         // Revenue Logic
-        const monthlyRevenue = paidUsers * 9.99;
-        const annualRevenue = paidUsers * 49.99;
+        const baseMonthlyRevenue = paidUsers * 9.99;
+        const baseAnnualRevenue = paidUsers * 49.99;
+
+        const ultraSpeakMonthlyRevenue = ultraSpeakEnabled ? (paidUsers * 9.99) : 0;
+        const ultraSpeakAnnualRevenue = ultraSpeakEnabled ? (ultraSpeakMonthlyRevenue * 12) : 0;
+
+        const totalMonthlyRevenue = baseMonthlyRevenue + ultraSpeakMonthlyRevenue;
+        const totalAnnualRevenue = baseAnnualRevenue + ultraSpeakAnnualRevenue;
 
         // Cost Logic
         const activeSpeakingUsers = paidUsers * (activeUsagePct / 100);
@@ -744,59 +772,63 @@
         const listeningMinutesPerDay = activeSpeakingUsers * usageMinutes * 0.5;
         const speakingMinutesPerDay = activeSpeakingUsers * usageMinutes * 0.5;
 
-        // Pricing logic
+        // Cost Calculations
         const whisperDailyCost = listeningMinutesPerDay * 0.006;
         const ttsDailyCost = useDeviceTTS ? 0 : (speakingMinutesPerDay * 0.04);
 
         const dailyCost = whisperDailyCost + ttsDailyCost;
-        const monthlyCost = dailyCost * 30;
-        const yearlyCost = dailyCost * 365;
+        const monthlyCostVal = dailyCost * 30;
+        const yearlyCostVal = dailyCost * 365;
 
         // Profit logic
-        const monthlyProfit = monthlyRevenue - monthlyCost;
-        const yearlyProfit = annualRevenue - yearlyCost;
+        const monthlyProfitVal = totalMonthlyRevenue - monthlyCostVal;
+        const annualProfitVal = totalAnnualRevenue - yearlyCostVal;
 
-        // Render values
-        revenueMonthly.textContent = formatCurrency(monthlyRevenue);
-        revenueAnnual.textContent = formatCurrency(annualRevenue);
+        // Render Projections
+        monthlyRevenue.textContent = formatCurrency(totalMonthlyRevenue);
+        monthlyCost.textContent = formatCurrency(monthlyCostVal);
+        monthlyProfit.textContent = formatCurrency(monthlyProfitVal);
 
-        // Render Profits with visual colors
-        profitMonthly.textContent = formatCurrency(monthlyProfit);
-        if (monthlyProfit >= 0) {
-            profitMonthly.className = "metric-value metric-profit-positive";
+        if (monthlyProfitVal >= 0) {
+            monthlyProfit.className = "finance-profit-value finance-profit-positive";
         } else {
-            profitMonthly.className = "metric-value metric-profit-negative";
+            monthlyProfit.className = "finance-profit-value finance-profit-negative";
         }
 
-        profitAnnual.textContent = formatCurrency(yearlyProfit);
-        if (yearlyProfit >= 0) {
-            profitAnnual.className = "metric-value metric-profit-positive";
+        annualRevenue.textContent = formatCurrency(totalAnnualRevenue);
+        annualCost.textContent = formatCurrency(yearlyCostVal);
+        annualProfit.textContent = formatCurrency(annualProfitVal);
+
+        if (annualProfitVal >= 0) {
+            annualProfit.className = "finance-profit-value finance-profit-positive";
         } else {
-            profitAnnual.className = "metric-value metric-profit-negative";
+            annualProfit.className = "finance-profit-value finance-profit-negative";
         }
 
-        // Render Costs table
-        costDaily.textContent = formatCurrency(dailyCost);
-        costMonthly.textContent = formatCurrency(monthlyCost);
-        costYearly.textContent = formatCurrency(yearlyCost);
-
-        // Active daily count
-        activeSpeakersCount.textContent = formatNumber(activeSpeakingUsers);
-
-        // Breakdown card values synced
-        whisperBreakdownCost.textContent = `${formatCurrency(whisperDailyCost)}/day`;
+        // Render Breakdown values
+        breakdownBaseRevenue.textContent = `${formatCurrency(baseMonthlyRevenue)}/mo`;
         
+        if (ultraSpeakEnabled) {
+            breakdownUltraSpeakRow.style.display = 'flex';
+            breakdownUltraRevenue.textContent = `${formatCurrency(ultraSpeakMonthlyRevenue)}/mo`;
+        } else {
+            breakdownUltraSpeakRow.style.display = 'none';
+        }
+
+        activeSpeakersCount.textContent = formatNumber(activeSpeakingUsers);
+        whisperBreakdownCost.textContent = `${formatCurrency(whisperDailyCost)}/day`;
+
         if (useDeviceTTS) {
             ttsBreakdownCost.textContent = "Device Free ($0)";
             ttsBreakdownCost.style.color = "var(--success-text)";
             ttsAlert.style.display = 'block';
-            cloudTtsRate.style.textDecoration = 'line-through';
         } else {
             ttsBreakdownCost.textContent = `${formatCurrency(ttsDailyCost)}/day`;
             ttsBreakdownCost.style.color = "var(--primary)";
             ttsAlert.style.display = 'none';
-            cloudTtsRate.style.textDecoration = 'none';
         }
+
+        totalBreakdownCost.textContent = `${formatCurrency(dailyCost)}/day`;
     }
 
     // Initialize controls
@@ -806,6 +838,7 @@
         bindInputs(usageRange, usageNumber, 10);
 
         deviceTtsToggle.addEventListener('change', calculate);
+        ultraSpeakToggle.addEventListener('change', calculate);
 
         calculate();
     }
