@@ -53,11 +53,11 @@
         max-width: 1100px;
         width: 100%;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 24px 16px;
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 16px;
     }
 
     /* Back Navigation Button */
@@ -84,11 +84,13 @@
 
     /* Header */
     header {
-        margin-bottom: 8px;
+        margin-top: 12px;
+        margin-bottom: 0;
+        text-align: center;
     }
 
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 700;
         letter-spacing: -0.025em;
         margin-bottom: 4px;
@@ -97,20 +99,38 @@
 
     header p {
         color: var(--muted-foreground);
-        font-size: 0.95rem;
-        max-width: 700px;
+        font-size: 0.8125rem;
+        max-width: 100%;
     }
 
     /* Grid Layout */
     .dashboard-grid {
         display: grid;
         grid-template-columns: 1fr 1.3fr;
-        gap: 24px;
+        gap: 16px;
     }
 
     @media (max-width: 900px) {
         .dashboard-grid {
             grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        #projections-card {
+            order: -1; /* Projections panel at top on mobile */
+        }
+        .card {
+            padding: 12px !important;
+            gap: 12px !important;
+        }
+        .control-group {
+            gap: 6px !important;
+        }
+        .metrics-summary-grid {
+            gap: 12px !important;
+        }
+        .metric-card {
+            padding: 12px !important;
+            gap: 10px !important;
         }
     }
 
@@ -119,18 +139,18 @@
         background-color: var(--card);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 24px;
+        padding: 16px;
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 16px;
     }
 
     .card-title {
-        font-size: 1.125rem;
+        font-size: 1rem;
         font-weight: 600;
         letter-spacing: -0.01em;
         border-bottom: 1px solid var(--border);
-        padding-bottom: 12px;
+        padding-bottom: 8px;
         color: var(--primary);
     }
 
@@ -515,17 +535,11 @@
 
 <div class="container">
 
-    <!-- Header -->
-    <header>
-        <h1>Voice Features Estimator</h1>
-        <p>A lightweight SaaS dashboard projecting subscription revenues, infrastructure costs, and final estimated profitability margins.</p>
-    </header>
-
     <!-- Content Grid -->
     <div class="dashboard-grid">
         
         <!-- Input Panel -->
-        <div class="card">
+        <div class="card" id="config-card">
             <div class="card-title">Configuration</div>
 
             <!-- Number of Paid Users -->
@@ -593,7 +607,7 @@
         </div>
 
         <!-- Output Panel -->
-        <div class="card">
+        <div class="card" id="projections-card">
             <div class="card-title">Financial & Cost Estimates</div>
 
             <!-- Projections Summaries -->
@@ -684,6 +698,12 @@
         </div>
 
     </div>
+
+    <!-- Header Section (moved below config grid) -->
+    <header>
+        <h1>Voice Features Estimator</h1>
+        <p>A lightweight SaaS dashboard projecting subscription revenues, infrastructure costs, and final estimated profitability margins.</p>
+    </header>
 
     <!-- Configuration Summary Section -->
     <div class="card" style="margin-top: 8px;">
