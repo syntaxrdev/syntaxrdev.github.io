@@ -84,7 +84,7 @@
 
     /* Header */
     header {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
     }
 
     header h1 {
@@ -97,7 +97,7 @@
 
     header p {
         color: var(--muted-foreground);
-        font-size: 0.875rem;
+        font-size: 0.95rem;
         max-width: 700px;
     }
 
@@ -457,38 +457,38 @@
         line-height: 1.4;
     }
 
-    /* Summary Grid */
-    .summary-grid {
+    /* Configuration Summary styles */
+    .summary-list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        font-size: 0.85rem;
-        line-height: 1.6;
-        color: var(--muted-foreground);
-    }
-    
-    .summary-column {
-        display: flex;
-        flex-direction: column;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 16px;
     }
-    
+
     .summary-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .summary-heading {
         font-size: 0.8125rem;
-    }
-    
-    .summary-item strong {
-        color: var(--primary);
-        display: block;
-        margin-bottom: 4px;
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--primary);
     }
-    
-    @media (max-width: 768px) {
-        .summary-grid {
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
+
+    .summary-text {
+        font-size: 0.8125rem;
+        color: var(--muted-foreground);
+        line-height: 1.4;
+    }
+
+    .summary-highlight {
+        color: var(--primary);
+        font-weight: 600;
     }
 
     /* Footer */
@@ -514,8 +514,9 @@
 <body>
 
 <div class="container">
+
     <!-- Header -->
-    <header style="margin-top: 12px;">
+    <header>
         <h1>Voice Features Estimator</h1>
         <p>A lightweight SaaS dashboard projecting subscription revenues, infrastructure costs, and final estimated profitability margins.</p>
     </header>
@@ -685,45 +686,40 @@
     </div>
 
     <!-- Configuration Summary Section -->
-    <div class="card" style="margin-top: 24px;">
+    <div class="card" style="margin-top: 8px;">
         <div class="card-title">Configuration Summary</div>
-        <div class="summary-grid">
-            <div class="summary-column">
-                <div class="summary-item">
-                    <strong>1. Paid Users</strong>
-                    This is the number of active users paying for the application. All baseline subscription revenue scales directly from this active customer base of <span id="summary-paid-users" style="color: var(--primary); font-weight: 600;">0</span> users.
-                </div>
-                <div class="summary-item">
-                    <strong>2. Active Daily Usage Rate</strong>
-                    This estimates how many paid users actually use the AI speaking feature daily, which is projected at <span id="summary-active-pct" style="color: var(--primary); font-weight: 600;">0%</span> (representing <span id="summary-active-count" style="color: var(--primary); font-weight: 600;">0</span> active daily users).
-                </div>
-                <div class="summary-item">
-                    <strong>3. Average Daily Usage per User</strong>
-                    This is the average speaking/listening interaction time per active user per day, currently configured at <span id="summary-usage-mins" style="color: var(--primary); font-weight: 600;">0 min</span>.
-                </div>
-                <div class="summary-item" id="summary-tts-status">
-                    <strong>4. Speech Synthesis Type (TTS)</strong>
-                    Paid cloud TTS is active.
-                </div>
+        <div class="summary-list">
+            <div class="summary-item">
+                <span class="summary-heading">1. Paid Users</span>
+                <span class="summary-text">This is the number of active users paying for the app. Current value is <span class="summary-highlight" id="summary-paid-users">0</span> users.</span>
             </div>
-            
-            <div class="summary-column">
-                <div class="summary-item" id="summary-ultra-status">
-                    <strong>5. Plan Model Add-on</strong>
-                    Only base plans are active.
-                </div>
-                <div class="summary-item">
-                    <strong>6. Cost Dynamics</strong>
-                    Estimated cost is based on Whisper transcription ($0.006/min) + optional TTS speaking usage, projecting <span id="summary-cost-display" style="color: var(--primary); font-weight: 600;">$0.00/mo</span> in platform fees.
-                </div>
-                <div class="summary-item">
-                    <strong>7. Revenue Architecture</strong>
-                    Overall business revenue is based on selected subscription plan pricing and the optional Ultra Speak add-on, projecting <span id="summary-revenue-display" style="color: var(--primary); font-weight: 600;">$0.00/mo</span> in incoming sales.
-                </div>
-                <div class="summary-item">
-                    <strong>8. Profitability Margins</strong>
-                    Our estimated net profit reflects projected subscription revenue minus the estimated hosting/AI usage expenditures.
-                </div>
+            <div class="summary-item">
+                <span class="summary-heading">2. Active Speaking Users %</span>
+                <span class="summary-text">Estimates how many paid users actually use the AI speaking feature daily. Currently <span class="summary-highlight" id="summary-active-speakers-pct">0%</span> (equal to <span class="summary-highlight" id="summary-active-speakers-count">0</span> users).</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">3. Daily Usage per Active User</span>
+                <span class="summary-text">The average speaking and listening interaction time per active user per day. Currently <span class="summary-highlight" id="summary-daily-usage">0</span> minutes.</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">4. Device Built-in TTS Toggle</span>
+                <span class="summary-text" id="summary-device-tts-status">Paid cloud TTS is included in the estimated cost structure.</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">5. Ultra Speak Add-on Toggle</span>
+                <span class="summary-text" id="summary-ultra-speak-status">Only the base subscription revenue is counted in projections.</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">6. Cost Calculation</span>
+                <span class="summary-text">Estimated server-side cost is based on simulated Whisper transcription and optional Google Cloud TTS speaking usage.</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">7. Revenue Projection</span>
+                <span class="summary-text">Subscription revenue is calculated using active plan prices ($9.99/mo or $49.99/yr) multiplied by paid users, plus optional add-on margins.</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-heading">8. Estimated Net Profit</span>
+                <span class="summary-text">Calculated as the difference between total projected revenue and total AI usage cost (Revenue minus Cost).</span>
             </div>
         </div>
     </div>
@@ -762,16 +758,6 @@
     const whisperBreakdownCost = document.getElementById('whisper-breakdown-cost');
     const ttsBreakdownCost = document.getElementById('tts-breakdown-cost');
     const totalBreakdownCost = document.getElementById('total-breakdown-cost');
-
-    // Summary elements
-    const summaryPaidUsers = document.getElementById('summary-paid-users');
-    const summaryActivePct = document.getElementById('summary-active-pct');
-    const summaryActiveCount = document.getElementById('summary-active-count');
-    const summaryUsageMins = document.getElementById('summary-usage-mins');
-    const summaryTtsStatus = document.getElementById('summary-tts-status');
-    const summaryUltraStatus = document.getElementById('summary-ultra-status');
-    const summaryCostDisplay = document.getElementById('summary-cost-display');
-    const summaryRevenueDisplay = document.getElementById('summary-revenue-display');
     const ttsAlert = document.getElementById('tts-alert');
 
     // Helper: Currency Format
@@ -912,23 +898,25 @@
 
         totalBreakdownCost.textContent = `${formatCurrency(dailyCost)}/day`;
 
-        // Render Summary values
-        if (summaryPaidUsers) summaryPaidUsers.textContent = paidUsers.toLocaleString();
-        if (summaryActivePct) summaryActivePct.textContent = activeUsagePct + "%";
-        if (summaryActiveCount) summaryActiveCount.textContent = Math.round(activeSpeakingUsers).toLocaleString();
-        if (summaryUsageMins) summaryUsageMins.textContent = usageMinutes + " min";
-        if (summaryTtsStatus) {
-            summaryTtsStatus.innerHTML = useDeviceTTS 
-                ? `<strong>4. Speech Synthesis Type (TTS)</strong> Cloud TTS cost is excluded because the device handles speech output locally.`
-                : `<strong>4. Speech Synthesis Type (TTS)</strong> Paid cloud TTS is included. Estimations include Google Cloud Text-to-Speech pricing ($0.040/min).`;
+        // Update Configuration Summary plain English values dynamically
+        document.getElementById('summary-paid-users').textContent = new Intl.NumberFormat('en-US').format(paidUsers);
+        document.getElementById('summary-active-speakers-pct').textContent = activeUsagePct + "%";
+        document.getElementById('summary-active-speakers-count').textContent = new Intl.NumberFormat('en-US').format(Math.round(activeSpeakingUsers));
+        document.getElementById('summary-daily-usage').textContent = usageMinutes;
+
+        const summaryDeviceTtsStatus = document.getElementById('summary-device-tts-status');
+        if (useDeviceTTS) {
+            summaryDeviceTtsStatus.innerHTML = 'Cloud TTS cost is <span class="summary-highlight">excluded</span> because the browser/operating system handles speech generation locally on the device (saving server costs).';
+        } else {
+            summaryDeviceTtsStatus.innerHTML = 'Paid cloud TTS is <span class="summary-highlight">included</span> in server projections. Speaking output requires paid cloud API requests.';
         }
-        if (summaryUltraStatus) {
-            summaryUltraStatus.innerHTML = ultraSpeakEnabled 
-                ? `<strong>5. Plan Model Add-on</strong> Extra $9.99/month/user revenue is included in projections because the optional Ultra Speak add-on is enabled.`
-                : `<strong>5. Plan Model Add-on</strong> Only the base subscription revenue is counted. The optional Ultra Speak add-on is disabled.`;
+
+        const summaryUltraSpeakStatus = document.getElementById('summary-ultra-speak-status');
+        if (ultraSpeakEnabled) {
+            summaryUltraSpeakStatus.innerHTML = 'Extra <span class="summary-highlight">+$9.99/mo per user</span> speaking add-on revenue is included in calculations.';
+        } else {
+            summaryUltraSpeakStatus.innerHTML = '<span class="summary-highlight">Only the base</span> subscription revenue ($9.99/mo or $49.99/yr) is counted in estimates.';
         }
-        if (summaryCostDisplay) summaryCostDisplay.textContent = formatCurrency(monthlyCostVal) + "/mo";
-        if (summaryRevenueDisplay) summaryRevenueDisplay.textContent = formatCurrency(totalMonthlyRevenue) + "/mo";
     }
 
     // Initialize controls
