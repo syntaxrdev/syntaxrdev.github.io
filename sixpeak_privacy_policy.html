@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — SixPeak</title>
+<meta name="description" content="Privacy Policy for the SixPeak fitness application by NexAtlas Labs.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --text: #121212;
+    --muted: #616161;
+    --accent: #007AFF;
+    --accent-soft: rgba(0, 122, 255, 0.08);
+    --good: #30D158;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0c0c;
+      --surface: #141414;
+      --border: #27272a;
+      --text: #ffffff;
+      --muted: #b0b0b0;
+      --accent: #4da3ff;
+      --accent-soft: rgba(77, 163, 255, 0.10);
+      --good: #4ade80;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px 96px; }
+
+  header.masthead {
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 15px; letter-spacing: 0.02em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 18px;
+  }
+  .brand .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+  h1 {
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    font-weight: 800; margin: 0 0 14px;
+  }
+  .meta { color: var(--muted); font-size: 14.5px; margin: 0; }
+  .meta strong { color: var(--text); font-weight: 600; }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 28px 0 44px;
+  }
+  .summary h2 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 0 0 16px; font-weight: 800;
+    border: none; padding: 0;
+  }
+  .summary ul { margin: 0; padding-left: 0; list-style: none; }
+  .summary li {
+    position: relative; padding-left: 30px; margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .summary li::before {
+    content: "\2713";
+    position: absolute; left: 0; top: -1px;
+    color: var(--good); font-weight: 800; font-size: 17px;
+  }
+
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 24px 0;
+    font-size: 15.5px;
+  }
+  .callout p { margin: 0; }
+  .callout p + p { margin-top: 10px; }
+
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 44px;
+  }
+  nav.toc h2 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 0 0 14px; font-weight: 800;
+    border: none; padding: 0;
+  }
+  nav.toc ol {
+    margin: 0; padding-left: 20px;
+    columns: 2; column-gap: 32px;
+  }
+  @media (max-width: 620px) { nav.toc ol { columns: 1; } }
+  nav.toc li { margin-bottom: 7px; break-inside: avoid; font-size: 15px; }
+  nav.toc a { color: var(--text); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+  section { margin-bottom: 44px; scroll-margin-top: 24px; }
+  h2 {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
+    margin: 0 0 14px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+  p { margin: 0 0 14px; }
+  ul, ol.body-list { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  strong { font-weight: 650; }
+  a { color: var(--accent); }
+  code {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 5px; padding: 1px 6px; font-size: 0.9em;
+  }
+
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 18px 0; font-size: 15.5px;
+  }
+  th, td {
+    text-align: left; padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 800;
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 28px; margin-top: 56px;
+    color: var(--muted); font-size: 14.5px;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand"><span class="dot"></span> SixPeak &middot; NexAtlas Labs</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      Last updated: <strong>18 September 2026</strong><br>
+      Effective date: <strong>18 September 2026</strong>
+    </p>
+  </header>
+
+  <div class="callout">
+    <p><strong>SixPeak is a paid application.</strong> Access to SixPeak's
+    features requires an active, auto-renewing paid subscription. This
+    Privacy Policy applies from the app's first published release onward,
+    even as its features are extended in future updates.</p>
+  </div>
+
+  <div class="summary">
+    <h2>Summary — the short version</h2>
+    <ul>
+      <li><strong>Your profile, nutrition logs, workout history, and scan
+      history live on your device.</strong> We do not operate a database
+      that stores this information for you.</li>
+      <li><strong>Physique photos and coach chat messages are sent to our
+      backend for AI analysis, then discarded.</strong> We do not keep a
+      copy after the analysis is returned to your device.</li>
+      <li><strong>Live exercise form tracking happens entirely on your
+      device.</strong> Camera frames used for real-time pose analysis are
+      processed on-device and are never transmitted anywhere.</li>
+      <li><strong>We do not sell your data</strong> and we do not share it
+      with advertisers or data brokers.</li>
+      <li><strong>SixPeak is a paid, subscription-based app.</strong>
+      Payment is handled entirely by the Apple App Store or Google Play.</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#controller">Who We Are</a></li>
+      <li><a href="#collect">Information We Collect</a></li>
+      <li><a href="#notcollect">What We Do Not Collect</a></li>
+      <li><a href="#ai">Physique Scans, Coach Chat &amp; AI Processing</a></li>
+      <li><a href="#pose">Live Exercise Form Tracking</a></li>
+      <li><a href="#purposes">How We Use Information</a></li>
+      <li><a href="#legalbasis">Legal Bases (GDPR)</a></li>
+      <li><a href="#sharing">Sharing &amp; Disclosure</a></li>
+      <li><a href="#retention">Data Retention</a></li>
+      <li><a href="#permissions">Device Permissions</a></li>
+      <li><a href="#subscriptions">Subscriptions &amp; Payments</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#transfers">International Transfers</a></li>
+      <li><a href="#rights">Your Rights</a></li>
+      <li><a href="#children">Children's Privacy</a></li>
+      <li><a href="#regional">Regional Disclosures</a></li>
+      <li><a href="#changes">Changes to This Policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="intro">
+    <h2>1. Introduction</h2>
+    <p>This Privacy Policy explains how the SixPeak mobile application (the
+    "App") handles information. It applies to your use of the App on iOS
+    and Android.</p>
+    <p><strong>SixPeak is a paid, subscription-based application.</strong>
+    We are currently shipping the first update of the App, and we expect
+    its feature set to grow over time; this Policy is written to cover that
+    ongoing development and will be revised as needed.</p>
+    <p>SixPeak has no user accounts and no persistent database of your
+    personal information. Your profile, nutrition logs, workout history,
+    and scan history are stored locally on your device. The App does send
+    certain content — physique photos, and your messages to the AI coach —
+    to our backend so that it can be analysed by our AI provider, as
+    described in Section 5.</p>
+    <p>Please also read our
+    <a href="sixpeak_terms_and_conditions.html">Terms &amp; Conditions</a>.</p>
+  </section>
+
+  <section id="controller">
+    <h2>2. Who We Are</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><th>Data controller</th><td>NexAtlas Labs</td></tr>
+          <tr>
+            <th>Contact</th>
+            <td><a href="mailto:support@nexatlaslabs.com">support@nexatlaslabs.com</a></td>
+          </tr>
+          <tr>
+            <th>Application</th>
+            <td>SixPeak (<code>com.nexatlaslabs.sixpeak</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>For the purposes of the EU and UK General Data Protection Regulation
+    ("GDPR"), NexAtlas Labs is the data controller in respect of the
+    processing described in this policy.</p>
+  </section>
+
+  <section id="collect">
+    <h2>3. Information We Collect</h2>
+
+    <h3>3.1 Information stored on your device only</h3>
+    <p>The following is created by you or generated by the App as you use
+    it, and is stored locally on your device. It is not transmitted to us
+    for storage and we cannot access it directly:</p>
+    <ul>
+      <li><strong>Profile information</strong> — details you enter such as
+      your body stats, goals, and preferences, used to personalise workout
+      and nutrition guidance.</li>
+      <li><strong>Nutrition logs</strong> — foods and meals you add, whether
+      typed manually or confirmed from an AI coach suggestion.</li>
+      <li><strong>Workout history</strong> — routines, sessions, and
+      exercise sets you complete or generate.</li>
+      <li><strong>Scan history</strong> — your past physique scan results
+      and the photos associated with them, kept on your device after
+      analysis completes.</li>
+      <li><strong>Coach chat history</strong> — your conversation with the
+      in-app AI coach.</li>
+    </ul>
+    <p>This information is removed when you uninstall the App.</p>
+
+    <h3>3.2 Information processed for AI analysis</h3>
+    <p>When you run a physique scan or send a message to the AI coach, the
+    photo or message text (and, where relevant, recent chat history for
+    context) is transmitted to our backend, which forwards it to our AI
+    provider for analysis, then returns a result to your device. See
+    Section 5 for full detail.</p>
+
+    <h3>3.3 Technical diagnostics</h3>
+    <p>Our backend host (Google Cloud) and our AI provider may process
+    technical information inherent to handling a network request — such as
+    IP address, request timestamp, and device or app version — for
+    security, abuse prevention, and service operation. This is processed
+    under each provider's own privacy terms and is not linked back to you
+    by name.</p>
+  </section>
+
+  <section id="notcollect">
+    <h2>4. What We Do Not Collect</h2>
+    <p>To be explicit, the App does <strong>not</strong> collect, or
+    require you to provide:</p>
+    <ul>
+      <li>your name, email address, phone number, or postal address;</li>
+      <li>account credentials of any kind (there are no accounts);</li>
+      <li>contacts, calendar entries, messages, or call logs;</li>
+      <li>precise or approximate location data;</li>
+      <li>advertising identifiers, or any identifier used for cross-app
+      tracking;</li>
+      <li>health or fitness data from Apple Health, Google Fit, or any
+      wearable device;</li>
+      <li>browsing history or activity in other applications;</li>
+      <li>payment card numbers or financial account details.</li>
+    </ul>
+    <p>The App contains no third-party advertising SDKs and no analytics
+    SDKs that profile you.</p>
+  </section>
+
+  <section id="ai">
+    <h2>5. Physique Scans, Coach Chat &amp; AI Processing</h2>
+    <p>This is the most privacy-sensitive part of the App, so we describe
+    it precisely.</p>
+
+    <h3>5.1 What happens, step by step</h3>
+    <ol class="body-list">
+      <li>You take or choose a physique photo, or send a message to the AI
+      coach. Capture and submission only ever begin from a deliberate
+      action by you.</li>
+      <li>A photo is compressed on your device before it is uploaded.</li>
+      <li>The photo, or your chat message and recent conversation history,
+      is sent over an encrypted connection to the <strong>SixPeak
+      backend</strong>, which we operate on Google Cloud infrastructure.</li>
+      <li>The backend forwards the content to <strong>OpenAI</strong> for
+      analysis, and returns the structured result (a physique score and
+      notes, a chat reply, or a suggested nutrition entry) to your
+      device.</li>
+      <li><strong>The backend does not write photos or chat content to a
+      database or disk.</strong> The backend processes each request in
+      memory and does not retain a copy once the response has been
+      returned. Your device is what stores the analysed result and the
+      photo going forward, in your local scan and chat history.</li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>We do not keep a server-side copy of your physique photos
+      or chat messages.</strong> They pass through our backend to our AI
+      provider and back, are used only to produce your result, and are not
+      persisted in any database or log we control. Any copy you see
+      afterwards lives only in the App's local history on your own
+      device.</p>
+    </div>
+
+    <h3>5.2 Our AI provider's handling of the content</h3>
+    <p>Processing by OpenAI is governed by
+    <a href="https://openai.com/policies/">OpenAI's own terms and privacy
+    policy</a>. OpenAI acts as our processor for this operation. We do not
+    control, and are not responsible for, how OpenAI's infrastructure
+    itself logs or retains API traffic under its own retention practices;
+    we encourage you to review OpenAI's published policies for its API
+    services.</p>
+
+    <h3>5.3 Nutrition suggestions from chat</h3>
+    <p>When the AI coach proposes a nutrition entry from your conversation
+    (for example, after you describe a meal), the App shows you the
+    proposed entry for review before anything is saved. Nothing is added to
+    your nutrition log until you confirm it.</p>
+  </section>
+
+  <section id="pose">
+    <h2>6. Live Exercise Form Tracking</h2>
+    <p>SixPeak's real-time exercise form feature uses your device's camera
+    together with on-device pose detection (Google ML Kit) to track body
+    landmarks while you exercise.</p>
+    <div class="callout">
+      <p><strong>This processing happens entirely on your device.</strong>
+      Camera frames used for live pose tracking are analysed locally and
+      are never uploaded to our backend, to OpenAI, or to any other
+      server. Nothing from this feature leaves your device.</p>
+    </div>
+  </section>
+
+  <section id="purposes">
+    <h2>7. How We Use Information</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Information</th><th>Purpose</th><th>Where processed</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Profile, nutrition logs, workout history, scan history</td>
+            <td>To run the App's core features and show your history and
+            progress</td>
+            <td>Your device only</td>
+          </tr>
+          <tr>
+            <td>Physique photo</td>
+            <td>To generate a physique score and notes</td>
+            <td>Transmitted to our backend and OpenAI; not retained
+            server-side</td>
+          </tr>
+          <tr>
+            <td>Coach chat message</td>
+            <td>To generate a reply, and to propose nutrition or profile
+            updates you can confirm</td>
+            <td>Transmitted to our backend and OpenAI; not retained
+            server-side</td>
+          </tr>
+          <tr>
+            <td>Live camera frames (exercise form tracking)</td>
+            <td>To detect body landmarks and give real-time form
+            feedback</td>
+            <td>Your device only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>We do not use any information for advertising, profiling, automated
+    decision-making with legal effect, or resale.</p>
+  </section>
+
+  <section id="legalbasis">
+    <h2>8. Legal Bases for Processing (GDPR)</h2>
+    <p>If you are in the European Economic Area or the United Kingdom, we
+    rely on the following legal bases:</p>
+    <ul>
+      <li><strong>Performance of a contract</strong> (Art. 6(1)(b)) — for
+      processing a physique photo or chat message to provide the analysis
+      or reply you have asked the App to perform, and for managing your
+      paid subscription.</li>
+      <li><strong>Consent</strong> (Art. 6(1)(a)) — for access to your
+      camera and photo library, which you grant through your device's
+      permission prompts and may withdraw at any time in device
+      settings.</li>
+      <li><strong>Legitimate interests</strong> (Art. 6(1)(f)) — for the
+      security and abuse-prevention measures applied by our backend and AI
+      provider when handling a request.</li>
+    </ul>
+    <p>Where a physique photo could be considered to contain biometric or
+    otherwise special category data, we rely on your
+    <strong>explicit consent</strong> (Art. 9(2)(a)), given by your
+    deliberate choice to capture or select a photo and submit it for
+    analysis. You may withdraw that consent at any time by not using the
+    scan feature; the App's other features do not require it.</p>
+    <p>We note that the App does not perform biometric identification: the
+    AI is asked only to assess physique characteristics relevant to fitness
+    tracking, never to identify a person.</p>
+  </section>
+
+  <section id="sharing">
+    <h2>9. Sharing &amp; Disclosure</h2>
+    <p>We do not sell, rent, or trade your information. We share it only
+    as follows:</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Recipient</th><th>What</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenAI</td>
+            <td>Physique photo, or chat message and recent conversation
+            history, at the moment of analysis</td>
+            <td>To generate your physique score or coach reply</td>
+          </tr>
+          <tr>
+            <td>Google Cloud</td>
+            <td>The same content, in transit while our backend runs on
+            Google Cloud infrastructure</td>
+            <td>To host the backend that relays your request to OpenAI</td>
+          </tr>
+          <tr>
+            <td>Apple / Google Play</td>
+            <td>Subscription and purchase data, handled entirely by the
+            store</td>
+            <td>To process payment and manage your subscription</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>We may disclose information where required by law, court order, or
+    valid governmental request, or to establish or defend legal claims.
+    Because we retain no server-side copy of your photos or chat content,
+    our practical ability to comply with such a request in respect of that
+    content is extremely limited.</p>
+    <p>If NexAtlas Labs is involved in a merger, acquisition, or asset
+    sale, we will provide notice before any information becomes subject to
+    a different privacy policy.</p>
+  </section>
+
+  <section id="retention">
+    <h2>10. Data Retention</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Retention period</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Profile, nutrition logs, workout history, scan history,
+            chat history</td>
+            <td>Kept on your device until you delete them in the App or
+            uninstall it</td>
+          </tr>
+          <tr>
+            <td>Physique photo or chat content in transit to our backend
+            and OpenAI</td>
+            <td>Processed to produce a result, then discarded; not written
+            to our backend's database or disk</td>
+          </tr>
+          <tr>
+            <td>Live camera frames (exercise form tracking)</td>
+            <td>Processed in memory on-device, frame by frame; never
+            stored, by the App or by us</td>
+          </tr>
+          <tr>
+            <td>Data held by NexAtlas Labs</td>
+            <td><strong>None persistent.</strong> Our backend currently
+            keeps no long-term database of your content</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Uninstalling the App removes all locally stored data. This cannot be
+    undone, and because we hold no backup, data removed this way is not
+    recoverable.</p>
+  </section>
+
+  <section id="permissions">
+    <h2>11. Device Permissions</h2>
+    <p>Each permission is requested only for the stated purpose, and may
+    be revoked at any time in your device settings.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Permission</th><th>Purpose</th><th>If declined</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Camera</td>
+            <td>Capture a photo for a physique scan, and live pose
+            tracking during exercise form analysis</td>
+            <td>Scan and live form tracking unavailable; other features
+            still work</td>
+          </tr>
+          <tr>
+            <td>Photo library</td>
+            <td>Choose an existing photo for a physique scan instead of
+            using the camera</td>
+            <td>You can still use the camera to scan directly</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The camera is activated only while you are actively capturing a
+    photo or running a live exercise-tracking session. The App does not
+    record in the background.</p>
+  </section>
+
+  <section id="subscriptions">
+    <h2>12. Subscriptions &amp; Payments</h2>
+    <p><strong>SixPeak is a paid application, offered on an auto-renewing
+    subscription basis.</strong> We may offer a free trial period; unless
+    cancelled before the trial ends, it converts automatically into a paid
+    subscription. <strong>All payments are processed by Apple or Google —
+    never by us.</strong></p>
+    <p>We do not receive, see, or store your payment card number, billing
+    address, or financial account details. The app stores provide us only
+    with aggregate, non-identifying information about purchases (for
+    example, the number of active subscriptions).</p>
+    <p>Payment data is handled under
+    <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>
+    or <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>
+    respectively.</p>
+  </section>
+
+  <section id="security">
+    <h2>13. Security</h2>
+    <p>We apply measures appropriate to the data involved:</p>
+    <ul>
+      <li>Photos, chat messages, and analysis results are transmitted over
+      encrypted TLS connections only.</li>
+      <li>Locally stored data resides in app-private storage, protected by
+      your device's operating system sandbox and, where enabled, its
+      device encryption.</li>
+      <li>Our backend does not write your photos or chat content to disk
+      or to a database, which limits the impact of a server-side
+      compromise on that content.</li>
+      <li>Optional server-side access uses a shared API key mechanism to
+      reduce abuse of backend endpoints.</li>
+    </ul>
+    <p>No method of transmission or storage is completely secure. We
+    encourage you to protect your device with a passcode or biometric
+    lock, since local data is only as secure as the device holding it.</p>
+  </section>
+
+  <section id="transfers">
+    <h2>14. International Data Transfers</h2>
+    <p>Photos and chat content sent for AI analysis may be processed on
+    Google Cloud and OpenAI infrastructure located outside your country of
+    residence, including in the United States.</p>
+    <p>Where such a transfer involves personal data of individuals in the
+    EEA or UK, it is made under appropriate safeguards, including the
+    European Commission's Standard Contractual Clauses as incorporated
+    into our providers' data processing terms.</p>
+    <p>Because this content is processed transiently and is not retained
+    by our backend after a result is returned, the transfer is momentary
+    and no cross-border data store is created by us.</p>
+  </section>
+
+  <section id="rights">
+    <h2>15. Your Rights</h2>
+    <p>Depending on where you live, you may have rights to access,
+    correct, delete, restrict, or object to the processing of your
+    personal data, to data portability, and to withdraw consent.</p>
+
+    <div class="callout">
+      <p><strong>How to exercise these rights in practice:</strong>
+      because SixPeak stores your profile, logs, and history only on your
+      own device and our backend retains no long-term copy, you have
+      direct and immediate control. You can delete entries in the App,
+      revoke camera or photo library access in device settings, or
+      uninstall the App to erase all local data.</p>
+      <p>We cannot access, export, correct, or delete your local App data
+      on your behalf, because we never hold it.</p>
+    </div>
+
+    <p>If you wish to make a formal request or have a question about your
+    rights, contact
+    <a href="mailto:support@nexatlaslabs.com">support@nexatlaslabs.com</a>.
+    We will respond within 30 days.</p>
+    <p>If you are in the EEA or UK, you also have the right to lodge a
+    complaint with your local data protection supervisory authority.</p>
+  </section>
+
+  <section id="children">
+    <h2>16. Children's Privacy</h2>
+    <p>SixPeak is not directed at children under 13, and we do not
+    knowingly collect personal information from them. The App has no
+    accounts, no social features, and no advertising.</p>
+    <p>If you are a parent or guardian and believe a child under 13 has
+    used the App in a way that concerns you, please contact us. Note that
+    because all data is stored locally, uninstalling the App removes it
+    immediately.</p>
+  </section>
+
+  <section id="regional">
+    <h2>17. Regional Disclosures</h2>
+
+    <h3>17.1 California (CCPA / CPRA)</h3>
+    <p>We do not sell or share personal information as those terms are
+    defined under the CCPA/CPRA, and we have not done so in the preceding
+    twelve months. We do not use personal information for cross-context
+    behavioural advertising.</p>
+    <p>California residents have rights to know, delete, correct, and opt
+    out. As explained in Section 15, we hold no long-term copy of your
+    personal information, so the practical exercise of these rights takes
+    place on your device.</p>
+
+    <h3>17.2 European Economic Area &amp; United Kingdom</h3>
+    <p>Legal bases are set out in Section 8, international transfers in
+    Section 14, and your rights in Section 15. We have not appointed an
+    EU or UK representative, as our processing does not meet the threshold
+    requiring one under Art. 27 GDPR.</p>
+
+    <h3>17.3 Apple App Store &amp; Google Play disclosures</h3>
+    <p>The privacy labels we publish on the App Store and the Data Safety
+    section we publish on Google Play are consistent with this policy. In
+    summary: data is not collected for tracking, is not linked to your
+    identity, and is not sold. Camera and photo data are used solely for
+    app functionality described above.</p>
+  </section>
+
+  <section id="changes">
+    <h2>18. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time, including as
+    we ship updates beyond the App's first release. When we do, we will
+    revise the "Last updated" date at the top of this page.</p>
+    <p>If we make material changes — particularly any change that would
+    introduce collection or retention of data we do not currently collect
+    — we will provide prominent notice within the App before the change
+    takes effect, and obtain your consent where required by law.</p>
+    <p>We encourage you to review this page periodically.</p>
+  </section>
+
+  <section id="contact">
+    <h2>19. Contact</h2>
+    <p>For any question, concern, or request regarding privacy:</p>
+    <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><th>Entity</th><td>NexAtlas Labs</td></tr>
+          <tr>
+            <th>Email</th>
+            <td><a href="mailto:support@nexatlaslabs.com">support@nexatlaslabs.com</a></td>
+          </tr>
+          <tr>
+            <th>Application</th>
+            <td>SixPeak (<code>com.nexatlaslabs.sixpeak</code>)</td>
+          </tr>
+          <tr><th>Response time</th><td>Within 30 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 NexAtlas Labs. All rights reserved.<br>
+    See also our <a href="sixpeak_terms_and_conditions.html">Terms &amp;
+    Conditions</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>
